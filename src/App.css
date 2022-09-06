@@ -2,17 +2,22 @@
   height: 100vh;
   display: flex;
 }
-img{
-  width: 25vw;
+.frontDiv, .backDiv{
   position: absolute;
 }
-.front{
+.frontDiv{
   top: 15vh;
   left: 15vw;
 }
-.back{
+.backDiv{
   top: 55vh;
   left: 20vw;
+}
+img{
+  width: 25vw;
+}
+.frontData{
+  position: fixed;
 }
 .grad{
   /* width: 30vw; */
