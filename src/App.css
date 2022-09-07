@@ -4,6 +4,8 @@
 }
 .frontDiv, .backDiv{
   position: absolute;
+  display: flex;
+  align-items: center;
 }
 .frontDiv{
   top: 15vh;
@@ -13,11 +15,53 @@
   top: 55vh;
   left: 20vw;
 }
-img{
-  width: 25vw;
+.frontImg, .backImg {
+  width: 400px;
+}
+.cardLogo{
+  width: 80px;
+}
+.frontSide, .backSide{
+  width: 400px;
+  height: 200px;
+  /* background-color: #21092f94; */
+  box-sizing: border-box;
+  z-index: 5;
+  padding: 25px 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: white;
 }
 .frontData{
-  position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  /* background-color: #44da; */
+  height: 50%;
+}
+.cardNum{
+  font-size: 35px;
+  width: 100%;
+  text-align: left;
+}
+.name-date{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  text-transform: capitalize;
+}
+.frontImg, .backImg{
+  position: inherit;
+}
+.backSide{
+  /* background-color: #21092f; */
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-right: 50px;
+  box-sizing: border-box;
 }
 .grad{
   /* width: 30vw; */
@@ -34,4 +78,35 @@ img{
 .form{
   display: flex;
   flex-direction: column;
+  /* align-items: flex-start; */
+  font-size: 15px;
+  color: hsl(278, 68%, 11%);
+  width: 40%;
+}
+.nameDiv, .numberDiv{
+  display: flex;
+  flex-direction: column;
+}
+input{
+  padding: 0.5rem 0.5rem;
+  outline: none;
+  border: 1px solid rgba(128, 128, 128, 0.459);
+  border-radius: 5px;
+  margin: 0.5rem 0;
+  width: 100%;
+}
+.dateDiv{
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.dateDiv > div{
+  display: flex;
+}
+.date-cvc{
+  display: flex;
+  flex: 2;
+}
+#name, #number, #mm, #yy, #cvc{
+
 }
