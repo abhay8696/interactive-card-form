@@ -16,10 +16,15 @@ function App() {
   //functions
   const
   handleCardNumber = str=> {
-    if(str?.length % 4 === 1 && str.length > 1){
-
+    if(str.length > 16) return;
+    let arr = str.split(""), str2='';
+    // ['0', '1', '2', '3', '4', '5',]
+    for(let i=0; i<arr.length; i++){
+      if(i===4 || i===8 || i===12){
+        str2 = str2 + " " + arr[i]
+      }else str2 = str2 + arr[i]
     }
-    setCardNumber(str)
+    setCardNumber(str2)
   },
   handleCVC = str=> {
     if(str?.length <= 3) setCvc(str)
@@ -67,9 +72,11 @@ function App() {
           <input 
             id="number" 
             placeholder='0000 0000 0000 0000' 
-            type='number'
-            value={cardNumber}
-            onChange={e=> handleCardNumber(`${e.target.value}`)}/>
+            // value={cardNumber}
+            maxLength={16}
+            onChange={e=>{
+              if(e.target.value.length <= 16) handleCardNumber(`${e.target.value}`)
+            }}/>
           </div>
 
           <div className='date-cvc'>
@@ -80,12 +87,14 @@ function App() {
                   id="mm" 
                   placeholder='MM'
                   value={month}
+                  maxLength = {2}
                   onChange={e=> setMonth(e.target.value)}
                 />
                 <input 
                   id="yy" 
                   placeholder='YY'
                   value={year}
+                  maxLength = {4}
                   onChange={e=> setYear(e.target.value)}
                 />
               </div>
@@ -96,6 +105,7 @@ function App() {
                 id='cvc' 
                 placeholder='e.g. 123'
                 value={cvc}
+                maxLength = {3}
                 onChange={e=> handleCVC(`${e.target.value}`)}
               />
             </div>
