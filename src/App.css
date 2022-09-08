@@ -1,19 +1,12 @@
 .App{
   height: 100vh;
   display: flex;
+  font-family: 'Space Grotesk', sans-serif;
 }
 .frontDiv, .backDiv{
   position: absolute;
   display: flex;
   align-items: center;
-}
-.frontDiv{
-  top: 15vh;
-  left: 15vw;
-}
-.backDiv{
-  top: 55vh;
-  left: 20vw;
 }
 .frontImg, .backImg {
   width: 400px;
@@ -37,11 +30,11 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  /* background-color: #44da; */
+  /* background-color: #21092f94; */
   height: 50%;
 }
 .cardNum{
-  font-size: 35px;
+  font-size: 30px;
   width: 100%;
   text-align: left;
 }
@@ -73,7 +66,7 @@
   flex: 2;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
 }
 .form{
   display: flex;
@@ -82,6 +75,7 @@
   font-size: 15px;
   color: hsl(278, 68%, 11%);
   width: 40%;
+  margin-right: 15%;
 }
 .nameDiv, .numberDiv{
   display: flex;
@@ -89,24 +83,162 @@
 }
 input{
   padding: 0.5rem 0.5rem;
+  box-sizing: border-box;
   outline: none;
   border: 1px solid rgba(128, 128, 128, 0.459);
   border-radius: 5px;
   margin: 0.5rem 0;
   width: 100%;
 }
+.date-cvc{
+  display: flex;
+  width: 100%;
+}
 .dateDiv{
   display: flex;
   flex-direction: column;
   flex: 1;
+  /* background-color: aqua; */
 }
 .dateDiv > div{
   display: flex;
 }
-.date-cvc{
-  display: flex;
-  flex: 2;
+.cvcDiv{
+  flex: 1;
+  /* background-color: rebeccapurple; */
 }
-#name, #number, #mm, #yy, #cvc{
+#yy{
+  margin: auto 1rem;
+}
+#submit{
+  background-color: hsl(278, 68%, 11%);
+  width: 100%;
+  border: 2px solid  hsl(278, 68%, 11%);;
+  border-radius: 5px;
+  margin-top: 0.5rem;
+  color: white;
+  padding: 0.5rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
+/* desktop and bigger */
+@media only screen and (min-width: 1100px) {
+  .frontDiv{
+    top: 15vh;
+    left: 15vw;
+    z-index: 8;
+  }
+  .backDiv{
+    top: 55vh;
+    left: 20vw;
+    z-index: 5;
+  }
+  #submit:hover{
+    background-color: white;
+    color: #21092f;
+    cursor: pointer;
+  }
+}
+/*tablet*/
+@media only screen and (min-width: 850px) and (max-width: 1199px) {
+  .frontDiv{
+    top: 25vh;
+    left: 5vw;
+  }
+  .backDiv{
+    top: 05vh;
+    left: 15vw;
+  }
+  .form{
+    margin-top: 5rem;
+    width: 55%;
+    margin-right: 5%;
+  }
+  #submit:hover{
+    background-color: white;
+    color: #21092f;
+    cursor: pointer;
+  }
+}
+/*tablet and below mobile*/
+@media only screen and (max-width: 849px){
+  .App{
+    flex-direction: column;
+  }
+  .frontDiv, .backDiv{
+    justify-content: center;
+    width: 100%;
+  }
+  .frontDiv{
+    top: 22vh;
+  }
+  .backDiv{
+    top: 05vh;
+  }
+  .frontImg, .backImg {
+    /* change below 450 */
+    width: 350px; 
+  }
+  .frontImg, .frontSide{
+    margin-right: 4rem;
+  }
+  .backImg, .backSide{
+    margin-left: 4rem;
+  }
+  .cardLogo{
+    width: 60px;
+  }
+  .frontSide, .backSide{
+    width: 350px;
+    height: 200px;
+  }
+  .cardNum{
+    font-size: 25px;
+  }
+  .name-date{
+    font-size: 12px;
+  }
+  .formDiv{
+    justify-content: center;
+  }
+  .form{
+    width: 400px;
+    margin-right: 0;
+    margin-top: 2rem;
+  }
+  input{
+    padding: 1rem;
+    font-size: 14px;
+  }
+}
+/*mobile*/
+@media only screen and (max-width: 500px) {
+  .frontImg, .backImg {
+    /* change below 450 */
+    width: 300px; 
+  }
+  .frontSide, .backSide{
+    width: 300px;
+    height: 165px;
+  }
+  .cardLogo{
+    width: 3.5rem;
+  }
+  .cardNum{
+    font-size: 22px;
+  }
+  .form{
+    width: 85%;
+    margin-top: 0;
+  }
+  .form > *{
+    margin: 0.5rem 0;
+  }
+  #submit:active{
+    background-color: white;
+    color: #21092f;
+    cursor: pointer;
+  }
 }

@@ -15,6 +15,12 @@ function App() {
 
   return (
     <div className="App">
+      <div className='backDiv'>
+        <div className='backSide'>
+          <span>{cvc?.length ? cvc : '000'}</span>
+        </div>
+        <img src={back} className='backImg'></img>
+      </div>
       <div className='frontDiv'>
         <div className='frontSide'>
           <img src={logo} className='cardLogo'/>
@@ -30,12 +36,6 @@ function App() {
           </div>
         </div>
         <img src={front} className='frontImg'></img>
-      </div>
-      <div className='backDiv'>
-        <div className='backSide'>
-          <span>{cvc?.length ? cvc : '000'}</span>
-        </div>
-        <img src={back} className='backImg'></img>
       </div>
       <div className='grad'></div>
       <div className='formDiv'>
@@ -79,7 +79,7 @@ function App() {
             </div>
           </div>
 
-          <div type="submit">Confirm</div>
+          <div type="submit" id='submit'>Confirm</div>
         </form>
       </div>
     </div>
