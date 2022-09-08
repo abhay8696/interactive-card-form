@@ -13,6 +13,19 @@ function App() {
   [year, setYear] = useState(''),
   [cvc, setCvc] = useState('');
 
+  //functions
+  const
+  handleCardNumber = str=> {
+    if(str?.length % 4 === 1 && str.length > 1){
+
+    }
+    setCardNumber(str)
+  },
+  handleCVC = str=> {
+    if(str?.length <= 3) setCvc(str)
+  }
+  //0123 56789 1234 6
+
   return (
     <div className="App">
       <div className='backDiv'>
@@ -42,15 +55,21 @@ function App() {
         <form className='form'>
           <div className='nameDiv'>
           <label htmlFor="name">CARDHOLDER NAME</label>
-          <input id="name" placeholder='Jane Appleseed' onChange={e=> setName(e.target.value)}/>
+          <input 
+            id="name" 
+            placeholder='Jane Appleseed' 
+            value={name}
+            onChange={e=> setName(e.target.value)}/>
           </div>
 
           <div className='numberDiv'>
           <label htmlFor="number" type="number">CARDHOLDER NUMBER</label>
           <input 
             id="number" 
-            placeholder='0000 0000 0000' 
-            onChange={e=> setCardNumber(e.target.value)}/>
+            placeholder='0000 0000 0000 0000' 
+            type='number'
+            value={cardNumber}
+            onChange={e=> handleCardNumber(`${e.target.value}`)}/>
           </div>
 
           <div className='date-cvc'>
@@ -60,11 +79,13 @@ function App() {
                 <input 
                   id="mm" 
                   placeholder='MM'
+                  value={month}
                   onChange={e=> setMonth(e.target.value)}
                 />
                 <input 
                   id="yy" 
                   placeholder='YY'
+                  value={year}
                   onChange={e=> setYear(e.target.value)}
                 />
               </div>
@@ -74,7 +95,8 @@ function App() {
               <input 
                 id='cvc' 
                 placeholder='e.g. 123'
-                onChange={e=> setCvc(e.target.value)}
+                value={cvc}
+                onChange={e=> handleCVC(`${e.target.value}`)}
               />
             </div>
           </div>
