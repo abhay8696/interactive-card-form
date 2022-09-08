@@ -2,7 +2,10 @@ import { useState } from 'react';
 import './App.css';
 import front from './images/bg-card-front.png';
 import back from './images/bg-card-back.png';
-import logo from './images/card-logo.svg'
+import logo from './images/card-logo.svg';
+
+//components
+import FormDiv from './formDiv';
 
 function App() {
   //states
@@ -11,7 +14,8 @@ function App() {
   [cardNumber, setCardNumber] = useState(''),
   [month, setMonth] = useState(''),
   [year, setYear] = useState(''),
-  [cvc, setCvc] = useState('');
+  [cvc, setCvc] = useState(''),
+  [complete, setComplete] = useState(false);
 
   //functions
   const
@@ -28,6 +32,18 @@ function App() {
   },
   handleCVC = str=> {
     if(str?.length <= 3) setCvc(str)
+  },
+  handleName = str=> {
+    setName(str);
+  },
+  handleMonth = str=> {
+    setMonth(str)
+  },
+  handleYear = str=> {
+    setYear(str)
+  },
+  handleSubmit = str=> {
+    setComplete(true);
   }
   //0123 56789 1234 6
 
@@ -56,63 +72,19 @@ function App() {
         <img src={front} className='frontImg'></img>
       </div>
       <div className='grad'></div>
-      <div className='formDiv'>
-        <form className='form'>
-          <div className='nameDiv'>
-          <label htmlFor="name">CARDHOLDER NAME</label>
-          <input 
-            id="name" 
-            placeholder='Jane Appleseed' 
-            value={name}
-            onChange={e=> setName(e.target.value)}/>
-          </div>
-
-          <div className='numberDiv'>
-          <label htmlFor="number" type="number">CARDHOLDER NUMBER</label>
-          <input 
-            id="number" 
-            placeholder='0000 0000 0000 0000' 
-            // value={cardNumber}
-            maxLength={16}
-            onChange={e=>{
-              if(e.target.value.length <= 16) handleCardNumber(`${e.target.value}`)
-            }}/>
-          </div>
-
-          <div className='date-cvc'>
-            <div className='dateDiv'>
-              <label htmlFor="mm">EXP. DATE(MM/YY)</label>
-              <div>
-                <input 
-                  id="mm" 
-                  placeholder='MM'
-                  value={month}
-                  maxLength = {2}
-                  onChange={e=> setMonth(e.target.value)}
-                />
-                <input 
-                  id="yy" 
-                  placeholder='YY'
-                  value={year}
-                  maxLength = {4}
-                  onChange={e=> setYear(e.target.value)}
-                />
-              </div>
-            </div>
-            <div className='cvcDiv'>
-              <label htmlFor="cvc">CVC</label>
-              <input 
-                id='cvc' 
-                placeholder='e.g. 123'
-                value={cvc}
-                maxLength = {3}
-                onChange={e=> handleCVC(`${e.target.value}`)}
-              />
-            </div>
-          </div>
-
-          <div type="submit" id='submit'>Confirm</div>
-        </form>
+      <div className='mainBody'>
+        {
+        !complete ?
+          <FormDiv 
+          handleCardNumber={handleCardNumber} 
+          handleCVC={handleCVC}
+          handleName={handleName}
+          handleMonth={handleMonth}
+          handleYear={handleYear}
+          handleSubmit={handleSubmit}
+          />:
+          <h1 onClick={()=> setComplete(false)}>THANK YOU</h1>
+        }
       </div>
     </div>
   );
