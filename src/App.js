@@ -91,20 +91,20 @@ function App() {
     }
     if(type === cardNumber){
       if(!cardNumber?.length) setErrorNum('Empty Field!');
-      if(cardNumber?.length < 19 && !errorNote) setErrorNum('Less than 16 digits!');
+      else if(cardNumber?.length < 19 && !errorNote) setErrorNum('Less than 16 digits!');
       if(errorNote === 'alphabet') setErrorNum('Only Numeric Digits allowed!');
     }
     if(type === month){
       if(!month?.length) setErrorMonth('Empty Field!');
-      if(month < 1 || month > 12) setErrorMonth('Month Invalid!');
+      else if(month < 1 || month > 12) setErrorMonth('Month Invalid!');
     }
     if(type === year){
       if(!year?.length) setErrorYear('Empty Field!');
-      if(year < 22 || year > 100) setErrorYear('Year needs to be bewteen 22 to 100');
+      else if(year < 22 || year > 100) setErrorYear('Year needs to be bewteen 22 to 100');
     }
     if(type === cvc){
       if(!cvc?.length) setErrorCVC('Empty Field!');
-      if(cvc?.length < 3) setErrorCVC('Atleast 3 digits needed in CVC');
+      else if(cvc?.length < 3) setErrorCVC('Atleast 3 digits needed in CVC');
     }
   }
 
