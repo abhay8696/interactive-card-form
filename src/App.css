@@ -70,20 +70,21 @@ button{
   flex: 2;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: center;
 }
-.form{
+.form, .thankYouComp{
   display: flex;
   flex-direction: column;
   /* align-items: flex-start; */
   font-size: 15px;
   color: hsl(278, 68%, 11%);
   width: 40%;
-  margin-right: 15%;
+  /* margin-right: 15%; */
 }
 .nameDiv, .numberDiv{
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 input{
   padding: 0.5rem 0.5rem;
@@ -111,10 +112,10 @@ input{
   flex: 1;
   /* background-color: rebeccapurple; */
 }
-#yy{
+#yy, #errorYear{
   margin: auto 1rem;
 }
-#submit{
+.submit{
   background-color: hsl(278, 68%, 11%);
   width: 100%;
   border: 2px solid  hsl(278, 68%, 11%);;
@@ -125,6 +126,41 @@ input{
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.thankYouComp{
+  align-items: center;
+  display: flex; align-items: center; justify-content: space-evenly;
+}
+.doneIcon{
+  background-color: #21092f;
+  width: 5rem;
+  height: 5rem;
+  color: white;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%;
+}
+.doneIcon > span{
+  font-size: 3rem;
+}
+.thankYou{
+  font-size: 2rem;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.thankYouText{
+  font-size: 20px;
+  font-weight: 100;
+  opacity: 0.6;
+}
+#errorName, #errorNum, #errorMonth, #errorYear, #errorCVC{
+  border: 1px solid red;
+}
+.errorMsg{
+  color: red;
+  font-size: 10px;
+  /* position: absolute; */
+  top: 50%;
+  right: 0;
 }
 
 /* desktop and bigger */
@@ -139,10 +175,15 @@ input{
     left: 20vw;
     z-index: 5;
   }
-  #submit:hover{
+  .submit:hover{
     background-color: white;
     color: #21092f;
     cursor: pointer;
+  }
+  .thankYouComp{
+    height: 40vh;
+    margin-right: 0;
+    justify-self: center;
   }
 }
 /*tablet*/
@@ -155,21 +196,33 @@ input{
     top: 05vh;
     left: 15vw;
   }
-  .form{
+  .form, .thankYouComp{
     margin-top: 5rem;
     width: 55%;
-    margin-right: 5%;
+    /* margin-right: 5%; */
   }
-  #submit:hover{
+  .submit:hover{
     background-color: white;
     color: #21092f;
     cursor: pointer;
+  }
+  .thankYouComp{
+    height: 35vh;
+  }
+  .thankYou{
+    font-size: 1.8rem;
+  }
+  .thankYouText{
+    font-size: 18px;
   }
 }
 /*tablet and below mobile*/
 @media only screen and (max-width: 849px){
   .App{
     flex-direction: column;
+  }
+  .mainBody{
+    justify-content: center;
   }
   .frontDiv, .backDiv{
     justify-content: center;
@@ -207,7 +260,7 @@ input{
   .appBody{
     justify-content: center;
   }
-  .form{
+  .form, .thankYouComp{
     width: 400px;
     margin-right: 0;
     margin-top: 5rem;
@@ -215,6 +268,15 @@ input{
   input{
     padding: 1rem;
     font-size: 14px;
+  }
+  .thankYouComp{
+    height: 40vh;
+  }
+  .thankYou{
+    font-size: 1.5rem;
+  }
+  .thankYouText{
+    font-size: 15px;
   }
 }
 /*mobile*/
@@ -233,14 +295,15 @@ input{
   .cardNum{
     font-size: 22px;
   }
-  .form{
+  .form, .thankYouComp{
     width: 85%;
     margin-top: 0;
   }
-  .form > *{
+  .form > *, .thankYouComp > *{
     margin: 0.5rem 0;
   }
-  #submit:active{
+
+  .submit:active{
     background-color: white;
     color: #21092f;
     cursor: pointer;

@@ -6,6 +6,7 @@ import logo from './images/card-logo.svg';
 
 //components
 import FormDiv from './formDiv';
+import ThankYou from './thankYou';
 
 function App() {
   //states
@@ -15,37 +16,97 @@ function App() {
   [month, setMonth] = useState(''),
   [year, setYear] = useState(''),
   [cvc, setCvc] = useState(''),
-  [complete, setComplete] = useState(false);
+  [complete, setComplete] = useState(false),
+  [errorName, setErrorName] = useState(false),
+  [errorNum, setErrorNum] = useState(false),
+  [errorMonth, setErrorMonth] = useState(null),
+  [errorYear, setErrorYear] = useState(false),
+  [errorCVC, setErrorCVC] = useState(false);
 
   //functions
   const
   handleCardNumber = str=> {
     if(str.length > 16) return;
+    let nan = false;
     let arr = str.split(""), str2='';
     // ['0', '1', '2', '3', '4', '5',]
     for(let i=0; i<arr.length; i++){
+      if(!Number(arr[i])) nan = true;
       if(i===4 || i===8 || i===12){
         str2 = str2 + " " + arr[i]
       }else str2 = str2 + arr[i]
     }
-    setCardNumber(str2)
+    setCardNumber(str2);
+    if(nan) setErrorNum('Only Numeric Digits allowed');
+    else setErrorNum(null);
   },
   handleCVC = str=> {
-    if(str?.length <= 3) setCvc(str)
+    setErrorCVC(null);
+    setCvc(str)
   },
   handleName = str=> {
+    setErrorName(null);
     setName(str);
   },
   handleMonth = str=> {
-    setMonth(str)
+    setErrorMonth(null);
+    setMonth(str);
   },
   handleYear = str=> {
-    setYear(str)
+    setErrorYear(null);
+    setYear(str);
   },
-  handleSubmit = str=> {
-    setComplete(true);
+  handleSubmit = evt=> {
+    evt.preventDefault();
+    if(
+      !name?.length || 
+      cardNumber?.length<19 || 
+      errorNum ||
+      +(month)<1 || 
+      +month>12 || 
+      +year<22 ||
+      +year>100 ||
+      cvc?.length<3){
+
+      !name?.length ? inputError(name) : setErrorName(null);
+      cardNumber?.length<19 || errorNum ? inputError(cardNumber) : setErrorNum(null);
+      +month<1 || +month>12 ? inputError(month) : setErrorMonth(null);
+      +year<22 || +year>100 ? inputError(year) : setErrorYear(null);
+      cvc?.length<3 ? inputError(cvc) : setErrorCVC(null)
+    }
+    else setComplete(true);
+  },
+  handleContinue = ()=> {
+    setComplete(false);
+    setName("");
+    setCardNumber("");
+    setMonth("");
+    setYear("");
+    setCvc("");
+
+  },
+  inputError= (type, errorNote)=> {
+    if(type === name){
+      if(!name?.length) return setErrorName('Empty Field!');
+    }
+    if(type === cardNumber){
+      if(!cardNumber?.length) return setErrorNum('Empty Field!');
+      if(cardNumber?.length < 19 && !errorNote) return setErrorNum('Less than 16 digits!');
+      if(errorNote === 'alphabet') return setErrorNum('Only Numeric Digits allowed!');
+    }
+    if(type === month){
+      if(!month?.length) return setErrorMonth('Empty Field!');
+      if(month < 1 || month > 12) return setErrorMonth('Month Invalid!');
+    }
+    if(type === year){
+      if(!year?.length) return setErrorYear('Empty Field!');
+      if(year < 22 || year > 100) return setErrorYear('Year needs to be bewteen 22 to 100');
+    }
+    if(type === cvc){
+      if(!cvc?.length) return setErrorCVC('Empty Field!');
+      if(cvc?.length < 3) return setErrorCVC('Atleast 3 digits needed in CVC');
+    }
   }
-  //0123 56789 1234 6
 
   return (
     <div className="App">
@@ -82,8 +143,13 @@ function App() {
           handleMonth={handleMonth}
           handleYear={handleYear}
           handleSubmit={handleSubmit}
+          errorName = {errorName}
+          errorNum = {errorNum} 
+          errorMonth = {errorMonth}
+          errorYear = {errorYear}
+          errorCVC = {errorCVC}
           />:
-          <h1 onClick={()=> setComplete(false)}>THANK YOU</h1>
+          <ThankYou handleContinue={handleContinue}/>
         }
       </div>
     </div>

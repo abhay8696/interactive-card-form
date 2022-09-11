@@ -2,31 +2,36 @@ import React, { useState } from 'react';
 import './App.css';
 
 const FormDiv = props => {
-    const {handleName, handleCardNumber, handleCVC, handleMonth, handleYear, handleSubmit} = props;
+    const {handleName, handleCardNumber, handleCVC, handleMonth, handleYear, handleSubmit, errorName, errorNum, errorMonth, errorYear, errorCVC} = props;
+
+    //states
+
 
     return (
-        <form className='form' onSubmit={handleSubmit}>
+        <form className='form' onSubmit={evt=> handleSubmit(evt)}>
           <div className='nameDiv'>
           <label htmlFor="name">CARDHOLDER NAME</label>
           <input 
-            required
-            id="name" 
+            id= {errorName ? 'errorName':"name"} 
             placeholder='Jane Appleseed' 
             // value={name}
             onChange={e=> handleName(`${e.target.value}`)}/>
+            {errorName ?<div className='errorMsg'>{errorName}</div>: null}
           </div>
 
           <div className='numberDiv'>
           <label htmlFor="number" type="number">CARDHOLDER NUMBER</label>
           <input 
-            required
-            id="number" 
+            
+            id={errorNum ? 'errorNum' : "number" }
             placeholder='0000 0000 0000 0000' 
+            // type="number"
             // value={cardNumber}
             maxLength={16}
             onChange={e=>{
               if(e.target.value.length <= 16) handleCardNumber(`${e.target.value}`)
             }}/>
+            {errorNum ?<div className='errorMsg'>{errorNum}</div>: null}
           </div>
 
           <div className='date-cvc'>
@@ -34,37 +39,43 @@ const FormDiv = props => {
               <label htmlFor="mm">EXP. DATE(MM/YY)</label>
               <div>
                 <input 
-            required
-                  id="mm" 
+                  
+                  id={errorMonth ? 'errorMonth' : 'mm'}
                   placeholder='MM'
+                  type="number"
                 //   value={month}
                   maxLength = {2}
                   onChange={e=> handleMonth(`${e.target.value}`)}
                 />
                 <input 
-            required
-                  id="yy" 
+                  
+                  id={errorYear? 'errorYear' : 'yy'}
                   placeholder='YY'
+                  type="number"
+                  onErrorCapture={()=> console.log('asdasd')}
                 //   value={year}
-                  maxLength = {4}
+                  maxLength = {2}
                   onChange={e=> handleYear(`${e.target.value}`)}
                 />
               </div>
+              {errorMonth ?<div className='errorMsg'>{errorMonth}</div>: null}
+              {errorYear ?<div className='errorMsg'>{errorYear}</div>: null}
             </div>
             <div className='cvcDiv'>
               <label htmlFor="cvc">CVC</label>
               <input 
-            required
-                id='cvc' 
+                  
+                id={errorCVC ? 'errorCVC' : 'cvc'} 
                 placeholder='e.g. 123'
                 // value={cvc}
                 maxLength = {3}
                 onChange={e=> handleCVC(`${e.target.value}`)}
               />
+              {errorCVC ? <div className='errorMsg'>{errorCVC}</div> : null}
             </div>
           </div>
 
-          <button type="submit" id='submit'>Confirm</button>
+          <button type="submit" className='submit'>Confirm</button>
         </form>
     );
 };
