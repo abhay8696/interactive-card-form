@@ -114,11 +114,11 @@ function App() {
         <div className='backSide'>
           <span>{cvc?.length ? cvc : '000'}</span>
         </div>
-        <img src={back} className='backImg'></img>
+        <img src={back} className='backImg' alt='card-back'></img>
       </div>
       <div className='frontDiv'>
         <div className='frontSide'>
-          <img src={logo} className='cardLogo'/>
+          <img src={logo} className='cardLogo' alt='card logo'/>
           <div className='frontData'>
             <div className='cardNum'>{cardNumber?.length ? cardNumber : '0000 0000 0000 0000'}</div>
             <div className='name-date'>
@@ -130,7 +130,7 @@ function App() {
             </div>
           </div>
         </div>
-        <img src={front} className='frontImg'></img>
+        <img src={front} className='frontImg' alt='card-front'></img>
       </div>
       <div className='grad'></div>
       <div className='mainBody'>

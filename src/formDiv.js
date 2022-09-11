@@ -20,7 +20,7 @@ const FormDiv = props => {
           </div>
 
           <div className='numberDiv'>
-          <label htmlFor="number" type="number">CARDHOLDER NUMBER</label>
+          <label htmlFor="number">CARDHOLDER NUMBER</label>
           <input 
             
             id={errorNum ? 'errorNum' : "number" }
@@ -44,7 +44,6 @@ const FormDiv = props => {
                   placeholder='MM'
                   type="number"
                 //   value={month}
-                  maxLength = {2}
                   onChange={e=> handleMonth(`${e.target.value}`)}
                 />
                 <input 
@@ -54,7 +53,6 @@ const FormDiv = props => {
                   type="number"
                   onErrorCapture={()=> console.log('asdasd')}
                 //   value={year}
-                  maxLength = {2}
                   onChange={e=> handleYear(`${e.target.value}`)}
                 />
               </div>
