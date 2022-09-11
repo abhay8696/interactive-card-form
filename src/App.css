@@ -3,6 +3,11 @@
   display: flex;
   font-family: 'Space Grotesk', sans-serif;
 }
+h1{
+  margin: 0;
+  padding: 0;
+  position: absolute;
+}
 button{
   outline: none;
   font-family: 'Space Grotesk', sans-serif;
