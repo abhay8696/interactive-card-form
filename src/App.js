@@ -87,24 +87,24 @@ function App() {
   },
   inputError= (type, errorNote)=> {
     if(type === name){
-      if(!name?.length) return setErrorName('Empty Field!');
+      if(!name?.length) setErrorName('Empty Field!');
     }
     if(type === cardNumber){
-      if(!cardNumber?.length) return setErrorNum('Empty Field!');
-      if(cardNumber?.length < 19 && !errorNote) return setErrorNum('Less than 16 digits!');
-      if(errorNote === 'alphabet') return setErrorNum('Only Numeric Digits allowed!');
+      if(!cardNumber?.length) setErrorNum('Empty Field!');
+      if(cardNumber?.length < 19 && !errorNote) setErrorNum('Less than 16 digits!');
+      if(errorNote === 'alphabet') setErrorNum('Only Numeric Digits allowed!');
     }
     if(type === month){
-      if(!month?.length) return setErrorMonth('Empty Field!');
-      if(month < 1 || month > 12) return setErrorMonth('Month Invalid!');
+      if(!month?.length) setErrorMonth('Empty Field!');
+      if(month < 1 || month > 12) setErrorMonth('Month Invalid!');
     }
     if(type === year){
-      if(!year?.length) return setErrorYear('Empty Field!');
-      if(year < 22 || year > 100) return setErrorYear('Year needs to be bewteen 22 to 100');
+      if(!year?.length) setErrorYear('Empty Field!');
+      if(year < 22 || year > 100) setErrorYear('Year needs to be bewteen 22 to 100');
     }
     if(type === cvc){
-      if(!cvc?.length) return setErrorCVC('Empty Field!');
-      if(cvc?.length < 3) return setErrorCVC('Atleast 3 digits needed in CVC');
+      if(!cvc?.length) setErrorCVC('Empty Field!');
+      if(cvc?.length < 3) setErrorCVC('Atleast 3 digits needed in CVC');
     }
   }
 
